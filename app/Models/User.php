@@ -18,11 +18,19 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
+        'id',
+        'affiliation',
         'name',
+        'number', 
         'email',
+        'address',
+        'remarks',
         'password',
+        
     ];
 
+
+    const Update_at = null;
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -30,7 +38,7 @@ class User extends Authenticatable
      */
     protected $hidden = [
         'password',
-        'remember_token',
+       
     ];
 
     /**
@@ -39,6 +47,34 @@ class User extends Authenticatable
      * @var array<string, string>
      */
     protected $casts = [
-        'email_verified_at' => 'datetime',
+       // 'email_verified_at' => 'datetime',
     ];
+
+
+      /**
+     * attendance関連付け
+     * 1対多
+     */
+    public function attendance()
+    {
+        return $this->hasMany(attendance::class);
+    }
+
+
+
+public function updateUserFindById($user)
+{
+    return $this->where([
+        'id' => $user['id']
+    ])->update([
+        'name' => $user['name'],
+        'affiliation' => $user['affiliation'],
+        'number' => $user['number'], 
+        'email'=> $user['email'],
+        'address'=> $user['address'],
+        'remarks'=> $user['remarks'],
+        'password'=> $user['pasword'],
+    ]);
+}
+
 }

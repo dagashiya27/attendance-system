@@ -1,0 +1,228 @@
+table.management {
+    width: 100%;
+    tbody tr{
+        th {
+            border: solid;
+            border-width: thin;
+        }
+        .name{
+            width: 5%;
+        }
+        .address{
+            width: 10%;
+        }
+        .phone{
+            width: 10%;
+        }
+        .num{
+            width: 5%;
+        }
+        .checkout{
+            width: 10%;
+        }
+        .room{
+            width: 10%;
+        }
+        .date{
+            width: 10%;
+        }
+        .command{
+            width: 5%;
+        }
+        td {
+            border: solid;
+            border-width: thin;
+        }
+        .name{
+            width: 5%;
+        }
+        .address{
+            width: 10%;
+        }
+        .phone{
+            width: 10%;
+        }
+        .room{
+            width: 10%;
+        }
+        .num{
+            width: 5%;
+        }
+        .checkout{
+            width: 10%;
+        }
+        .date{
+            width: 10%;
+        }
+        .command{
+            width: 5%;
+        }
+    }
+}
+table.edit{
+    width: 100%;
+    tbody tr{
+        th {
+            width: 30%;
+            border: solid;
+            border-width: thin;
+        }
+        td {
+            width: 70%;
+            border: solid;
+            border-width: thin;
+        }
+    }
+}
+table.schedule{
+    width: 100%;
+    tbody tr{
+        th {
+            border: solid;
+            border-width: thin;
+        }
+        .date {
+            width: 40%;
+        }
+        .name {
+            width: 20%;
+        }
+        .room {
+            width: 20%;
+        }
+        .lodging {
+            width: 20%;
+        }
+        td {
+            border: solid;
+            border-width: thin;
+        }
+        .date {
+            width: 40%;
+        }
+        .name {
+            width: 20%;
+        }
+        .room {
+            width: 20%;
+        }
+        .lodging {
+            width: 20%;
+        }
+    }
+}
+table.total{
+    width: 100%;
+    tbody tr{
+        th {
+            border: solid;
+            border-width: thin;
+        }
+        .yearmonth {
+            width: 30%;            
+        }
+        .name {
+            width: 20%;
+        }
+        .count {
+            width: 20%;
+        }
+        .total {
+            width: 30%;
+        }
+        td {
+            width: 30%;
+            border: solid;
+            border-width: thin;
+        }
+        .yearmonth {
+            width: 30%;            
+        }
+        .name {
+            width: 20%;
+        }
+        .count {
+            width: 20%;
+        }
+        .total {
+            width: 30%;
+        }
+    }
+}
+table.checkout{
+    width: 100%;
+    tbody tr{
+        th {
+            border: solid;
+            border-width: thin;
+        }
+        .name {
+            width: 50%;
+        }
+        .time {
+            width: 50%;
+        }
+        td {
+            border: solid;
+            border-width: thin;
+        }
+        .name {
+            width: 50%;
+        }
+        .time {
+            width: 50%;
+        }
+    }
+}
+#overlay {
+    z-index:1;
+  
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0,0,0,0.5);
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    #content{
+        z-index:2;
+        width:70%;
+        padding: 1em;
+        background:#fff;
+        table.usersearch {
+            width: 100%;
+            tbody tr{
+                th {
+                    border: solid;
+                    border-width: thin;
+                }
+                .name {
+                    width: 10%;
+                }
+                .address {
+                    width: 10%;
+                }
+                .phone {
+                    width: 10%;
+                }
+                td {
+                    border: solid;
+                    border-width: thin;
+                }
+                .name {
+                    width: 10%;
+                }
+                .address {
+                    width: 10%;
+                }
+                .phone {
+                    width: 10%;
+                }
+            }
+        }
+    }
+}
