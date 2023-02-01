@@ -4,7 +4,7 @@
 
 @section('content')
 <head>
-<divnk rel="stylesheet" href="{{ asset('/css/style.css')  }}" >
+<link rel="stylesheet" href="{{ asset('/css/style.css')  }}" >
 </head>
 <div class="container">
     <div class="row justify-content-center">
@@ -15,64 +15,64 @@
  
         @CSRF
         <ul>
-            <div>ユーザ情報の編集</div>
-            <div></div>
-            <div>編集したい項目をご記入の上送信ボタンを押してください</div>
-            <div><span>*</span>は必須項目となります。</div>
-            <input type="hidden" name="id" value="{{ Auth::user()->id }}">
-            <div>名前<span>*</span>
+            <div id="p">ユーザ情報の編集</div>
             
+            <div id="p">編集したい項目をご記入の上送信ボタンを押してください</div>
+            
+            <input type="hidden" name="id" value="{{ Auth::user()->id }}">
+            <label id="roomLabel">名前</label><br>
+            <div>
                 @if ($errors->has('name'))
                     <br>
                     <p class="error-message">{{ $errors->first('name') }}</p>
                 @endif
             </div>
-            <div><input type="text" class="contact_form" name="name" placeholder="山田太郎"
+            <div><input type="text" id="contact_form" name="name" 
                     value="{{ Auth::user()->name }}"></div>
 
                     
-            <div>所属
+                <label id="roomLabel">所属</label><br>
                 @if ($errors->has('affiliation'))
                     <br>
                     <p class="error-message">{{ $errors->first('affiliation') }}</p>
                 @endif
-            </div>
-            <div><input type="text" class="contact_form" name="affiliation"
+          
+            <div><input type="text" id="contact_form" name="affiliation"
                     value="{{ Auth::user()->affiliation }}"></div>
-            <div>電話番号
+                    <label id="roomLabel">電話番号</label><br>
                 @if ($errors->has('number'))
-                    <br>
                     <p class="error-message">{{ $errors->first('number') }}</p>
                 @endif
-            </div>
-            <div><input type="text" class="contact_form" name="number"
+           
+            <div><input type="text" id="contact_form" name="number"
                     value="{{ Auth::user()->number }}"></div>
-            <div>メールアドレス<span>*</span>
+            <label id="roomLabel">メールアドレス</label><br>
                 @if ($errors->has('email'))
                     <br>
                     <p class="error-message">{{ $errors->first('email') }}</p>
                 @endif
-            </div>
-            <div><input type="text" class="contact_form" name="email"
+            
+            <div><input type="text" id="contact_form" name="email"
                     value="{{ Auth::user()->email }}"></div>
                  
-            <div>住所
+                <label id="roomLabel">住所</label><br>
                 @if ($errors->has('address'))
-                    <br>
+                    
                     <p class="error-message">{{ $errors->first('address') }}</p>
                 @endif
-            </div>
-            <div><input type="text" class="contact_form" name="address" 
+       
+            <div><input type="text" id="contact_form" name="address" 
                     value="{{Auth::user()->address }}"></div>
-            <div>備考</div>
+                    <label id="roomLabel">備考</label><br>
             <div>
                 @if ($errors->has('remarks'))
                     <p class="error-message">{{ $errors->first('remarks') }}</p>
                 @endif
-                <textarea class="textarea" name="remarks" rows="6">{{ Auth::user()->remarks }}</textarea></div>
+                <textarea class="textarea" name="remarks"id="contact_form" rows="10">{{ Auth::user()->remarks }}</textarea>
+            
             <div>
-                <button type="submit" class="button_send" value="">完了</button>
-                <button type="button" onclick="history.back()" class="button_back" name="back" value="back">戻る</button>
+                <button id="editButton" type="submit" class="button_send" value="">完了</button>
+                <button id="editButton" type="button" onclick="history.back()" class="button_back" name="back" value="back">戻る</button>
             </div>
             </form>
      

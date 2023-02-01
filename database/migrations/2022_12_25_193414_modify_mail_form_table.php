@@ -16,9 +16,7 @@ class ModifyMailFormTable extends Migration
 
             $table->unsignedBigInteger('send_id')->comment('受信者ID')->after('user_id');
 
-            $table->string('email')->after('send_id');
-
-            $table->string('body')->after('email');
+            $table->string('body')->after('send_id');
        
 
             $table->dropColumn('created_at');

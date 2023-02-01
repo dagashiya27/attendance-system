@@ -21,16 +21,7 @@ class ModifyAttendanceTable extends Migration
 
             $table->string('remarks')->comment('備考')->nullable()->after('clock_out');
 
-           
-
-
-
-
-
-
-
-
-
+        
             #カラムのデータ型を変更する
             //$table->integer('password')->change();
 

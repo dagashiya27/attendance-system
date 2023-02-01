@@ -9,6 +9,13 @@ use App\Repository\RegisterManagementRepository;
 use App\Repository\RoomRepository;
 use App\Http\Requests\ManagementRequest;
 
+
+
+use Carbon\Carbon;
+use App\Models\User;
+use App\Models\Reservation;
+use App\Models\Room;
+
 class ReservationController extends Controller
 {
     protected $registerManagement;
@@ -26,6 +33,9 @@ class ReservationController extends Controller
         $this->roomRepository = new RoomRepository();
     }
 
+
+
+
     /**
      * Show the Register.
      *
@@ -33,29 +43,36 @@ class ReservationController extends Controller
      */
     public function index(Request $request)
     {
-        Log::debug(Auth::user());
-        if(is_null($request->input('year')) || is_null($request->input('month')) || is_null($request->input('room')))
-        {
-            return view('register.index', 
-                [
-                    'registerLists' => $this->registerManagement->getList(),
-                    'rooms' => $this->roomRepository->getRoomList()
-                ]
-            );
+      
+        
         }
-        else
+
+        public function confirm(Request $request)
         {
-            return view('register.index', 
-                [
-                    'registerLists' => $this->registerManagement->getListByMonth($request->input('year'), 
-                                                                                $request->input('month'), 
-                                                                                $request->input('room'),
-                                                                                Auth::id()),
-                    'rooms' => $this->roomRepository->getRoomList()
-                ]
-            );
+            // バリデーションルールを定義
+            // 引っかかるとエラーを起こしてくれる
+            
+        
+            // フォームからの入力値を全て取得
+            $inputs = $request->all();
+        
+            // 確認ページに表示
+            // 入力値を引数に渡す
+            return view('room.confirm', [
+            'inputs' => $inputs,
+            ]);
         }
-    }
+
+        public function complete(){
+            return view ('/room/complete');
+        }
+    
+        
+           
+            
+        
+
+        
 
     /**
      * indexの月別表示
@@ -164,11 +181,10 @@ class ReservationController extends Controller
     /**
      * 削除処理
      */
-    public function delete(Request $request)
-    {
-        $this->registerManagement->deleteById($request->id);
-        return redirect('management');
-    }
+
+
+
+   
 
     /**
      * 宿泊処理確認

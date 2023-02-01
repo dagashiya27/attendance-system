@@ -47,16 +47,16 @@
                         
 
                             @guest
-                                @if (Route::has('login'))
+                                @if (Route::has('admin.login'))
                                 
-                                        <a class="nav-link" href="{{ route('login') }}">{{ __('ログイン') }}</a>
+                                        <a class="nav-link" href="{{  url('admin/login')  }}">{{ __('ログイン') }}</a>
                                     
                                 @endif
                         
 
                                 @if (Route::has('register'))
                                     <li class="nav-item">
-                                        <a class="nav-link" href="{{ route('register') }}">{{ __('ユーザ登録') }}</a>
+                                        <a class="nav-link" href="{{ url('admin/register') }}">{{ __('ユーザ登録') }}</a>
                                     </li>
                                 @endif
                             @else
@@ -64,7 +64,7 @@
                             <ul class="navbar-nav ml-auto mr-5">
 
                             <li class="nav-item ml-2">
-                            <a class="nav-link text-black" id="post-link" href="{{ route('attendance') }}">トップ</a>
+                            <a class="nav-link text-black" id="post-link" href="{{ url('admin/home') }}">トップ</a>
                             </li>
                             
                             <li class="nav-item dropdown">
@@ -72,7 +72,7 @@
                             メニュー
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('userMypage') }}">マイページ</a>
+                                <a class="dropdown-item" href="{{ url('AdminMypage') }}">管理者メニュー</a>
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('room.index') }}">会議室予約</a>
                                 <a class="dropdown-item" href="{{ route('contact') }}">問合せ</a>
@@ -84,13 +84,13 @@
                           
 
 
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            <a class="dropdown-item" href="{{ route('admin.logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                         {{ __('ログアウト') }}
                                     </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <form id="logout-form" action="{{ url('admin/logout') }}" method="POST" class="d-none">
                                         @csrf
                                     </form>
 

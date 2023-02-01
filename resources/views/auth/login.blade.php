@@ -65,7 +65,7 @@
 
                                 <br>
                                 @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{  route('login') }}">
+                                    <a class="btn btn-link" href="{{  url('/admin/login') }}">
                                         {{ __('マスター管理者はこちら') }}
                                     </a>
                                 @endif

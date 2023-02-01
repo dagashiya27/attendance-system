@@ -1,15 +1,14 @@
-@extends('layouts.app')
+@extends('layouts.appAdmin')
 
 @section('content')
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header">{{ __('Log') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('admin.login') }}">
+                    <form method="POST" action="{{ url('admin/login') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -59,7 +58,7 @@
                                 </button>
 
                                 <br>@if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
+                                    <a class="btn btn-link" href="{{ url('admin/password/request') }}">
                                         {{ __('パスワードを忘れた方はこちら') }}
                                     </a>
                                 @endif
@@ -67,7 +66,7 @@
                                 <br>
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{  route('login') }}">
-                                        {{ __('一般ユーザーはこちら') }}
+                                        {{ __('一般ユーザはこちら') }}
                                     </a>
                                 @endif
                             </div>

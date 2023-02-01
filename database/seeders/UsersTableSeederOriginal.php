@@ -6,8 +6,8 @@ use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Seeder;
 
-//class UsersTableSeeder extends Seeder
-//{
+class UsersTableSeederOriginal extends Seeder
+{
     /**
      * Run the database seeds.
      *
@@ -66,4 +66,5 @@ use Illuminate\Database\Seeder;
             'role' => 1,
             ]);
     }
+
 }

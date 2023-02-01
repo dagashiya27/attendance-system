@@ -12,12 +12,11 @@
             <div class="card">
                 <div class="card-header">{{ __('お問合せ') }}</div>
                 
-                <p>{{ __('お問合せの送信が完了しました。') }}</p>
+                <p id="spam">{{ __('お問合せの送信が完了しました。') }}</p>
 
-
-                <a class="" href="{{ route('home') }}">
+                <div id="backButtonDiv"> <a class="" id="backButton" href="{{ route('home') }}">
                     {{ __('トップへ戻る') }}
-                </a>                    
+                </a>     </div>           
                     
           
         </div>

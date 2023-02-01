@@ -8,12 +8,21 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceLogController;
-use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\RegisterManagementController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ReserveLogController;
+
+use App\Http\Controllers\Auth\LoginController;
+
+
+use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\AdminEditController;
+
+use App\Http\Controllers\RegisterManagementController;
+
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\editController;
 use Illuminate\Support\Facades\Auth; 
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -62,6 +71,41 @@ Route::get('logout', [LoginController::class, 'logout'])->name('login.logout');
 Auth::routes();
 
 
+//マスター管理者用
+
+Route::view('/admin/login', 'admin/login'); 
+Route::get('/admin/home', [App\Http\Controllers\admin\AdminHomeController::class, 'index'])->name('admin.home');
+Route::post('/admin/login', [App\Http\Controllers\admin\AdminLoginController::class, 'login'])->name('admin.login');
+Route::post('admin/logout', [App\Http\Controllers\admin\AdminLoginController::class,'logout'])->name('admin.logout');
+Route::view('/admin/register', 'admin/register');
+Route::get('/admin/register', [App\Http\Controllers\admin\AdminRegisterController::class, 'register']);
+Route::post('/admin/register', [App\Http\Controllers\admin\AdminRegisterController::class, 'register']);
+Route::view('/admin/home', 'admin/home')->middleware('auth:admin');
+
+
+//マスター管理者用メール
+Route::view('/Admin/password/reset', 'Admin/passwords/email');
+Route::post('/Admin/password/email', [App\Http\Controllers\Admin\AdminForgotPasswordController::class, 'sendResetLinkEmail']);
+Route::view('/Admin/password/reset/{token}', [App\Http\Controllers\Admin\AdminResetPasswordController::class,'showResetForm']);
+Route::post('/Admin/password/reset', [App\Http\Controllers\Admin\AdminResetPasswordController::class, 'reset']);
+
+
+Auth::routes();
+Route::get('/Admin/AdminUser', [AdminUserController::class, 'AdminUser'])->name('/Admin/AdminUser');
+Route::post('/Admin/AdminUser', [AdminUserController::class, 'AdminUser'])->name('/Admin/AdminUser');
+
+Auth::routes();
+Route::get('/Admin/AdminUserEdit', [AdminEditController::class, 'AdminEdit'])->name('AdminEdit');
+Route::post('/Admin/AdminUserEdit', [AdminEditController::class, 'AdminEditConfirm'])->name('edit.confirm');
+
+Auth::routes();
+Route::get('/Admin/editConfirm', [AdminEAdminEditController::class, 'editConfirm'])->name('editPass');
+Route::post('/Admin/editConfirm', [AdminEAdminEditController::class, 'update'])->name('update');
+Auth::routes();
+Route::get('/Admin/editComplete', [AdminEAdminEditController::class, 'update'])->name('userUpdate');
+Route::post('/Admin/editComplete', [AdminEAdminEditController::class, 'update'])->name('update2');
+
+
 
 //問合せ　ルート
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');;
@@ -81,12 +125,13 @@ Route::get('/userMypage', [HomeController::class, 'userMypage'])->name('userMypa
 Route::get('/attendanceLog', [HomeController::class, 'attendanceLog'])->name('attendanceLog');
 Route::post('/attendanceLog', [HomeController::class, 'attendanceLog'])->name('attendanceLog');
 
-Route::get('/reserveLog', [HomeController::class, 'reserveLog'])->name('reserveLog');
-Route::post('/reserveLog', [HomeController::class, 'reserveLog'])->name('reserveLog');
+Route::get('/reserveLog', [ReserveLogController::class, 'reserveLog'])->name('reserveLog');
+Route::post('/reserveLog', [ReserveLogController::class, 'reserveLog'])->name('reserveLog');
 
 
 Route::get('/reserve', [HomeController::class, 'reserve'])->name('reserve');
 Route::post('/reserve', [HomeController::class, 'reserve'])->name('reserve');
+
 
 
 
@@ -119,45 +164,22 @@ Route::group(['middleware' => 'auth'], function() {
 
 
 
+Route::get('/room/{id}/reserve',[RoomController::class, 'reserve']);
+Route::post('/room/{id}/reserve',     [RoomController::class, 'reserve']);
 
-//----部屋予約------
+
+Route::get('/room/index',       [RoomController::class, 'index'])->name('room.index');
+Route::get('/room', [HomeController::class, 'contact'])->name('contact');
+Route::post('/room', [HomeController::class, 'contact'])->name('contact');
 
 
-Route::get('/management',                 [RegisterManagementController::class,'index']);
-Route::post('/management/indexToMonthly', [RegisterManagementController::class,'indexToMonthly']);
-Route::get('/management/create',          [RegisterManagementController::class,'create']);
-Route::post('/management',                [RegisterManagementController::class,'store']);
-Route::get('/management/edit/{id}',       [RegisterManagementController::class,'edit']);
-Route::post('/management/update',         [RegisterManagementController::class,'update']);
-Route::get('/management/{id}/conform',    [RegisterManagementController::class,'conform']);
-Route::post('/management/delete',         [RegisterManagementController::class,'delete']);
-Route::post('/management/lodging',        [RegisterManagementController::class,'lodging']);
-Route::get('/management/schedule',        [RegisterManagementController::class,'schedule']);
-Route::post('/management/schedule',       [RegisterManagementController::class,'scheduleToMonthly']);
-Route::get('/management/total',           [RegisterManagementController::class,'total']);
-Route::post('/management/total',          [RegisterManagementController::class,'totalToMonthly']);
-Route::get('/management/total',           [RegisterManagementController::class,'totalToMonthly']);
-Route::get('/management/checkout',        [RegisterManagementController::class,'checkout']);
+Route::get('/room/confirm', [ReservationController::class, 'confirm'])->name('room.confirm');
+Route::post('/room/confirm', [ReservationController::class, 'confirm'])->name('room.confirm');
 
-Route::get('/room/index',       [RoomController::class, 'index'])->name('room.index');;
-Route::get('/room/create',      [RoomController::class, 'create'])->name('room.create');
-Route::post('/room/create',      [RoomController::class, 'create'])->name('room.create');
-Route::get('/room/store',       [RoomController::class, 'store'])->name('room.store');
-Route::post('/room/store',      [RoomController::class, 'store'])->name('room.store');
-Route::get('/room/{id}/edit',   [RoomController::class, 'edit']);
-Route::post('/room/update',     [RoomController::class, 'update']);
-Route::get('/room/{id}/conform',[RoomController::class, 'conform']);
-Route::post('/room/delete',     [RoomController::class, 'delete']);
+Route::get('/room/complete', [ReservationController::class, 'complete'])->name('room.complete');
+Route::post('/room/complete', [ReservationController::class, 'complete'])->name('room.complete');
 
-Route::post('/api/rooms',       [ApiController::class, 'rooms']);
-Route::post('/api/update',      [ApiController::class, 'update']);
-Route::post('/api/delete',      [ApiController::class, 'delete']);
-Route::post('/api/registers',   [ApiController::class, 'registers']);
-Route::post('/api/timelist',    [ApiController::class, 'timelist']);
-Route::post('/api/role',        [ApiController::class, 'role']);
-Route::post('/api/users',       [ApiController::class, 'users']);
-Route::post('/api/add',         [ApiController::class, 'add']);
-Route::post('/api/check',       [ApiController::class, 'check']);
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+Route::get('/delete', [App\Http\Controllers\Admin\AdminDeleteController::class, 'delete']);

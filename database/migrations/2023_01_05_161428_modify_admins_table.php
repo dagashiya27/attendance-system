@@ -30,10 +30,8 @@ Schema::table('admins', function (Blueprint $table) {
 
     $table->string('remarks')->nullable()->after('address');
 
-    $table->dropColumn('updated_at');
 
-
-    $table->tinyInteger('role')->default(0)->after('created_at');
+    $table->tinyInteger('role')->default(1)->after('created_at');
 
     $table->tinyInteger('del_flg')->default(0)->after('role');
 

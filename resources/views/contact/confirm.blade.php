@@ -18,9 +18,7 @@
                 <form method="POST" action="{{ route('contact.send') }}">
                         @csrf
 
-                        <label>メールアドレス</label>
-                        {{ $inputs['email'] }}
-                        <input name="email" value="{{ $inputs['email'] }}" type="hidden">
+                       
 
                         <label>タイトル</label>
                         {{ $inputs['title'] }}

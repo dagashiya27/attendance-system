@@ -24,6 +24,7 @@ class RoomController extends Controller
     {
         $this->middleware('auth');
         $this->room = new RoomRepository();
+        
     }
 
     /**

@@ -13,15 +13,16 @@
                 <div class="card-header">{{ __('編集完了') }}</div>
                 @method('PUT')
                 @csrf
-                <p>{{ __('ユーザ情報を変更しました。') }}</p>
+                <p id="spam">{{ __('ユーザ情報を変更しました。') }}</p>
 
 
-                <a class="" href="{{ route('home') }}">
-                    {{ __('トップへ戻る') }}
-                </a>                    
+                                     
                     
           
         </div>
+        <div id="backButtonDiv"> <a class="" id="backButton2" href="{{ route('home') }}">
+                    {{ __('トップへ戻る') }}
+                </a>     </div>  
     </div>
 </div>
 

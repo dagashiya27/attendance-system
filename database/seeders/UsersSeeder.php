@@ -20,7 +20,7 @@ class UsersSeeder extends Seeder
             DB::table('users')->insert([
                 'name' => 'matu',
                 'affiliation' => '人事部',
-                'number' => '0901234567',
+                'number' => '09012345678',
                 'remarks' => '休暇中',
                 'email' => 'mana@gmail.com',
                 'password' => bcrypt('mnbvcxz10'),
