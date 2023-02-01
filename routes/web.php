@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
 use Illuminate\Support\Facades\Http;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ApiController;
 use App\Http\Controllers\AttendanceController;
 use App\Http\Controllers\AttendanceLogController;
 use App\Http\Controllers\ReservationController;
@@ -17,7 +16,7 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\Admin\AdminEditController;
 
-use App\Http\Controllers\RegisterManagementController;
+
 
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\editController;
